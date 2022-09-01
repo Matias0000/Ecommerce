@@ -19,6 +19,14 @@ const [login, setLogin] = useState({
   password:''
 });
 
+const toastOptions = {
+  position: "bottom-right",
+  autoClose: 8000,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
+
 
 const handleChange =  (e) => {
   setLogin({
@@ -34,6 +42,7 @@ console.log(e.target.value,e.target.name);
      
 const handleSubmit= async(e) =>{
   e.preventDefault();
+  validateForm();
   console.log(login);
   try {
     const response =await axios.post('/api/auth/login', login)
@@ -41,13 +50,25 @@ const handleSubmit= async(e) =>{
   console.log(response);
   } catch (error) {
     console.log(error);
-    
+    toast.error("email or password is incorrect.", toastOptions);
   }
+}
+
+
+const validateForm = () => {
+  const { email, password } = login;
+  if (email === "") {
+    toast.error("Email and Password is required.", toastOptions);
+    return false;
+  } else if (password === "") {
+    toast.error("Email and Password is required.", toastOptions);
+    return false;
+  }
+  return true;
+};  
   
 
-}   
-
-  return(<div className="vh-100 gradient-custom">
+return(<div className="vh-100 gradient-custom">
         {/* action="/api/login" method="post" */}
     <form className="vh-100 gradient-custom"  onSubmit={handleSubmit}>
     <div className="container py-5 h-100">
@@ -103,6 +124,7 @@ const handleSubmit= async(e) =>{
       </div>
     </div>
   </form>
+  <ToastContainer />
         
 
     </div>)

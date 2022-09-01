@@ -42,9 +42,9 @@ const NewProduct = () => {
     setIsSubmitting(true);
 
     if (query.id) {
-      await updateTask();
+      await updateProduct();
     } else {
-      await createTask();
+      await createProduct();
     }
 
     await push("/");
@@ -79,7 +79,7 @@ const NewProduct = () => {
     return errors;
   };
 
-  const createTask = async () => {
+  const createProduct = async () => {
     try {
       await fetch("http://localhost:3000/api/products", {
         method: "POST",
@@ -93,7 +93,7 @@ const NewProduct = () => {
     }
   };
 
-  const updateTask = async () => {
+  const updateProduct = async () => {
     try {
       await fetch("http://localhost:3000/api/products/" + query.id, {
         method: "PUT",

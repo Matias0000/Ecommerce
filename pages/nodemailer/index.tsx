@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
+import {Button,Card,Container,Grid} from 'semantic-ui-react'
+import { Navbar2 } from '../../components/NavBar2'
 
 export default function Index() {
 
@@ -39,25 +41,31 @@ export default function Index() {
   }
 
   return (
-    <div >
-      < form  >
-        < div >
+    <>
+    <Navbar2/>
+    <Container className='ui container' >
+      
+      < form  className="ui form">
+        < div className="field">
           < label htmlFor='name'>Name</label>
           < input type='text' onChange={(e)=>{setName(e.target.value)}} name='name'  />
         </div>
 
-        < div className={""}>
+        < div className="field">
           < label htmlFor='email'>Email</label>
           < input type='email' onChange={(e)=>{setEmail(e.target.value)}} name='email' />
         </div>
 
-        < div className={""}>
+        < div className="field">
           < label htmlFor='message'>Message</label>
           < input type='text' onChange={(e)=>{setMessage(e.target.value)}} name='message'  />
         </div>
 
-        < input type='submit' onClick={(e)=>{handleSubmit(e)}}/>
+        <Button className='ui primary button' type='submit' onClick={(e)=>{handleSubmit(e)}}>
+        Save
+        </Button>
       </form >
-    </div>
+    </Container>
+    </>
   )
 }

@@ -24,20 +24,20 @@ export default function Register (){
                     <h2 className="fw-bold mb-2 text-uppercase">Registrar</h2>
 
                     <div className="form-outline form-white mb-4">
-                        <input type="text" name='nombre'  className="form-control form-control-lg" />
+                        <input type="text" name='nombre'  className="form-control form-control-lg" required/>
                         <label className="form-label">Nombre</label>
                     </div>             
                     <div className="form-outline form-white mb-4">
-                        <input type="number" name='edad'  className="form-control form-control-lg" />
+                        <input type="number" name='edad'  className="form-control form-control-lg" required/>
                         <label className="form-label">Edad</label>
                     </div>
                     <div className="form-outline form-white mb-4">
-                        <input type="email" name='email'  className="form-control form-control-lg" />
+                        <input type="email" name='email'  className="form-control form-control-lg" required/>
                         <label className="form-label">Email</label>
                     </div>
 
                     <div className="form-outline form-white mb-4">
-                        <input type="password" name='password'  className="form-control form-control-lg" />
+                        <input type="password" name='password'  className="form-control form-control-lg" required/>
                         <label className="form-label" >Password</label>
                     </div>
                     <div className="form-outline form-white mb-4">

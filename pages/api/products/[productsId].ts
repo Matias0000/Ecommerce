@@ -36,7 +36,7 @@ export default async function (req:any,res:any){
                   new: true,
                   runValidators: true,
                 });
-                if (!product) return res.status(404).json({ msg: "Task does not exists" });
+                if (!product) return res.status(404).json({ msg: "Product does not exists" });
                 return res.status(200).json(product);
               } catch (error) {
                 return res.status(400).json({ msg: error.message });

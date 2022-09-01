@@ -1,7 +1,6 @@
-// import { Button, Card, Grid } from "semantic-ui-react";
 import { useRouter } from "next/router";
 import TaskCard from "../../component/TaskCard";
-// import { Container } from "../api/component//ui/Container";
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -63,7 +62,7 @@ export default function Index({ product = [] }) {
                     <p>Description{products.description}</p>
                   </Card.Content>
                   <Card.Content extra>
-                    <Button className="positive ui button" style={{padding:'10px'}} onClick={() => router.push(`/carrito/${products._id}`)} >Comprar</Button>
+                    <Button className="positive ui button" style={{padding:'10px'}} onClick={() => router.push(`/carrito/`)} >Comprar</Button>
                     <Button primary onClick={() => router.push(`/products/${products._id}`)}>View</Button>
                     <Button secondary onClick={() => router.push(`/products/${products._id}/edit`)}> Editar</Button>
                   </Card.Content>

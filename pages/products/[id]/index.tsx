@@ -10,7 +10,7 @@ const Products = ({ product, error }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const { query, push } = useRouter();
 
-  const deleteTask = async () => {
+  const deleteProduct = async () => {
     const { id } = query;
     try {
       await fetch(`http://localhost:3000/api/products/${id}`, {
@@ -26,7 +26,7 @@ const Products = ({ product, error }) => {
 
   const handleDelete = async () => {
     setIsDeleting(true);
-    await deleteTask();
+    await deleteProduct();
     push("/");
     close();
   };
