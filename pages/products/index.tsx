@@ -49,14 +49,18 @@ export default function Index({ product = [] }) {
     {/* <Container style={{padding:"10px"}}> */}
     {/* <Layout/> */}
       <div>
-        <Card.Group itemsPerRow={4} style={{padding:"10px"}}>
+        <Card.Group  itemsPerRow={4} style={{padding:"10px"}}>
           {
               product.map((products) =>(
                 <Card key={products._id}>
                   <Card.Content>
                     <Card.Header>{products.title}</Card.Header>
                     <p>Precio ${products.price}</p>
+                    <p>Codigo:{products.code}</p>
+                    <p>Stock:{products.stock}</p>
+
                     <img src={products.thumbnail} style={{width:'150px',margin:'auto'}}></img>
+                    <p>Description{products.description}</p>
                   </Card.Content>
                   <Card.Content extra>
                     <Button className="positive ui button" style={{padding:'10px'}} onClick={() => router.push(`/carrito/${products._id}`)} >Comprar</Button>

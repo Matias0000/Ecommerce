@@ -3,14 +3,15 @@ import SocketIOClient from "socket.io-client";
 // import tw from "twin.macro";
 import { Confirm, Button, Loader, Grid } from "semantic-ui-react";
 import User from '../../models/Users'
-import { Navbar2 } from "../../component/NavBar2";
+import { Navbar2 } from "../../components/NavBar2";
 
 interface IMsg {
   user: string;
   msg: string;
 }
 
-// const user =  User.findOne({email})
+const cargarUsuario = ()=>{}
+
 // create random user
 const user = "User_" + String(new Date().getTime()).substr(-3);
 

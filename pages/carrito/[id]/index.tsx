@@ -13,11 +13,11 @@ const Products = ({ carrito1, error }) => {
   const {slug} = query
   
   
-  const [newProduct, setNewProduct] = useState({
+  const [newProduct, setNewProduct] = useState([{
     title: "",
     price:"",
     thumbnail: "",
-  });
+  }]);
 
   const [newCarrito,setCarrito]= useState([])
 

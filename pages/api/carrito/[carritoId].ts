@@ -10,7 +10,7 @@ connectDb()
 
 export default async function (req:any,res:any){
     const {method,query:{carritoId},body}=req;
-    // console.log(req.query);
+    console.log(req.query);
     switch(method){
         case "GET":
             try {
@@ -23,45 +23,45 @@ export default async function (req:any,res:any){
                 return res.status(400).json({ msg: error.message });
               }
         case "POST":
-          
-            const {query:{carritoId},body}=req;
-            // console.log("a donde",req.query);
+          try {
+            // const cart = await Cart.findByIdAndUpdate(carritoId, body, {
+            //   new: true,
+            //   runValidators: true,
+            // });
             
-            try {
-                // const cart = await Cart.create({});
-                const cart = await Cart.findById(carritoId);   
+            const cart = await Cart.insertOne({
+              new: true,
+              runValidators: true,
+            });
 
-                // cart.title=req.body.title
-                // console.log(req.body);
-                // console.log(cart.products);
-                console.log(cart);
-                cart.products.push(req.body)
+            if (!cart) return res.status(404).json({ msg: "Product does not exists" });
+            return res.status(200).json(cart);
+          } catch (error) {
+            return res.status(400).json({ msg: error.message });
+          }
+        
+        case "DELETE":
+            try {
+                const cart = await Cart.findByIdAndDelete(carritoId);
                 console.log(cart);
                 
-                return res.status(200).json({cart:cart.products})
-
-            } catch (error) {
-                return res.status(500).json({msg:"error post"});
-            }
-            
-        case "DELETE":
-
-            try {
-                const product = await Product.findByIdAndDelete(productsId);
-                    if (!product) return res.status(404).json({ msg: "Product does not exists" });
-                return res.status(200).json(product);
+                    if (!cart) return res.status(404).json({ msg: "Cart does not exists" });
+                return res.status(200).json(cart);
               } catch (error) {
                 return res.status(400).json({ msg: error.message });
               }
         case "PUT":
-
             try {
-                const product = await Product.findByIdAndUpdate(productsId, body, {
+                const cart = await Cart.findByIdAndUpdate(carritoId, body, {
                   new: true,
                   runValidators: true,
                 });
-                if (!product) return res.status(404).json({ msg: "Product does not exists" });
-                return res.status(200).json(product);
+                console.log(body);
+                console.log(carritoId);
+                
+                
+                if (!cart) return res.status(404).json({ msg: "Product does not exists" });
+                return res.status(200).json(cart);
               } catch (error) {
                 return res.status(400).json({ msg: error.message });
               }

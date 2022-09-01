@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+
 import { Confirm, Button, Loader, Grid } from "semantic-ui-react";
+
 import Error from "next/error";
 
 const Products = ({ product, error }) => {
@@ -42,7 +44,8 @@ const Products = ({ product, error }) => {
       <Grid.Row>
         <Grid.Column textAlign="center">
           <h1>{product.title}</h1>
-          <h2>Precio${product.price}</h2>
+          <h2>{product.price}</h2>
+          
           <img src={product.thumbnail}></img>
           <div>
             <Button color="red" onClick={open} loading={isDeleting}>
@@ -53,7 +56,7 @@ const Products = ({ product, error }) => {
       </Grid.Row>
 
       {/* Confirm modal */}
-      <Confirm
+      <Confirm 
         content={`Are you sure to delete the Product ${product._id}`}
         header="Please confirm"
         open={confirm}

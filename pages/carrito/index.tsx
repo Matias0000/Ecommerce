@@ -1,13 +1,13 @@
 // import { Button, Card, Grid } from "semantic-ui-react";
 import { useRouter } from "next/router";
-import TaskCard from "../../component/TaskCard";
+import TaskCard from "../../components/TaskCard";
 // import { Container } from "../api/component//ui/Container";
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import {Button,Card,Container,Grid} from 'semantic-ui-react'
-import { Layout } from "../../component/Layout";
-import { Navbar2 } from "../../component/NavBar2";
+import { Layout } from "../../components/Layout";
+import { Navbar2 } from "../../components/NavBar2";
 
 
 export default function Index({ carrito = [] }) {

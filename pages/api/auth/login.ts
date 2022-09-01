@@ -22,8 +22,7 @@ export default async function loginHandle(req:Request,res:Response){
     // return res.json({msg:"Incorrect userName or Password",status:false})
     return res.status(401).json({ error: "Invalid credentials" });
 
-    // return res.status(401).render('error');
-    // if(email ==='asd@asd.asd' && password ==='asd'){
+    
     if(user){
         const token = jwt.sign({
             exp:Math.floor(Date.now()/1000)+(60*60),
