@@ -42,8 +42,8 @@ export const Navbar2 = () => {
             {/* <Button href="/register" primary style={{margin:'5px'}}>Register</Button> */}
             <Button  className="ui green button" onClick={()=>router.push("/carrito/")} style={{margin:'5px'}}>Carrito</Button>
             <Button  className="ui blue button" onClick={()=>router.push("/chat/")} style={{margin:'5px'}}>Chat</Button>
+            <Button  className="ui green button" onClick={()=>router.push("/nodemailer/")}>Envio Mail</Button>
             <Button  className="ui red button" onClick={()=>{logout()}} style={{margin:'5px'}}>Logout</Button>
-
           </Menu.Item>
         </Menu.Menu>
         {/* <div>
