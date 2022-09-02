@@ -9,6 +9,7 @@ import ProductItem from '../components/ProductItem'
 import data from '../utils/data'
 // import 'bootstrap/dist/css/bootstrap.min.css' 
 import { Navbar2 } from '../components/NavBar2';
+import Footer from '../components/Footer/Footer';
 
 
 function HomePage({product=[]}) {
@@ -35,7 +36,7 @@ function HomePage({product=[]}) {
             ))}
           </div>
 
-
+      <Footer/>
     </>
 
   );

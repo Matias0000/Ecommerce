@@ -2,6 +2,7 @@ import {connectDb} from '../../config/db'
 // import User from '../../models/user'
 import User from '../../models/Users'
 import bcrypt from 'bcrypt';
+
 connectDb()
 
 export default async function handler(req,res){
@@ -15,7 +16,8 @@ export default async function handler(req,res){
             telefono:req.body.telefono,
             foto:req.body.foto,
           });
-
+          
+          
         res.redirect('/login')
         if(!user){
             return res.json({"code":'User not created'})

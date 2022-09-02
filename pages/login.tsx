@@ -101,6 +101,20 @@ return(<div className="vh-100 gradient-custom">
                 <a href='/register' className="btn btn-outline-light btn-lg px-5" type="submit" >Register</a>
 
                 <div className="d-flex justify-content-center text-center mt-4 pt-1">
+
+                <button className="ui facebook button">
+                <i className="facebook icon"></i>
+                    Facebook
+                </button>
+
+                <button className="ui twitter button">
+                  <i className="twitter icon"></i>
+                  Twitter
+                </button>
+                <button className="ui google plus button">
+                    <i className="google plus icon"></i>
+                  Google Plus
+                </button>
                   {/* <a href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet" className="text-white"><i className="fab fa-facebook-f fa-lg">google</i></a>
                    */}

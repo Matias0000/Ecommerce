@@ -1,0 +1,50 @@
+import {createTransport} from "nodemailer";
+import dotenv from 'dotenv';
+const {EMAIL, NODEMAILER_GMAIL} = process.env;
+/* eslint-disable import/no-anonymous-default-export */
+
+
+// export default function sendMail (req, res) {
+    require('dotenv').config()
+
+    const sendMail = (dataUser) => {
+    const transporter =createTransport({
+      service:'gmail',
+      port: 587,     
+         auth: {
+              user: process.env.EMAIL,
+              pass: process.env.PASSM,
+           },
+    });
+    
+    const mailData = {
+        from: 'prueba@prueba.com',
+        to: process.env.EMAIL,
+        subject: `Nuevo Registro`,
+        // text: req.body.message + " | Sent from: " + req.body.email,
+        html: `<h1>Datos del nuevo registro:</h1>
+        <p>nombre de usuario (email): ${dataUser.nombre}</p>
+        <p>edad: ${dataUser.edad}</p>
+        <p>dirección: ${dataUser.email}</p>
+        <p>password: ${dataUser.password}</p>
+        <p>teléfono: ${dataUser.telefono}</p>
+        <p>Avatar:${dataUser.foto}</p>`
+    }
+  
+    // transporter.sendMail(mailData, function (err, info) {
+    //     if(err)
+    //       console.log(err)
+    //     else
+    //       console.log(info);
+    // })
+    transporter.sendMail(mailOptions)
+    .then((result) => {
+        console.log(result);
+    }).catch (console.log);
+};
+  
+  //   console.log(req.body)
+  //   res.send('success')
+  // }
+
+  module.exports = sendMail;

@@ -47,7 +47,7 @@ export default function Index({ product = [] }) {
                   <Card.Content>
                     <Card.Header>{products.title}</Card.Header>
                     <p>Precio ${products.price}</p>
-                    <p>Codigo:{products.code}</p>
+                    <p>Categoria:{products.code}</p>
                     <p>Stock:{products.stock}</p>
 
                     <img src={products.thumbnail} style={{width:'150px',margin:'auto'}}></img>

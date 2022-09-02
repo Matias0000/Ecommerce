@@ -26,5 +26,5 @@ export  async function middleware(request){
 // }
 
 export const config = {
-    matcher:['/','/prueba','/products/:path*','/carrito','/chat']
+    matcher:['/','/prueba','/products/:path*','/carrito','/chat','/carrito']
 }
