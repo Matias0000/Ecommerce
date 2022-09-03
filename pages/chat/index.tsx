@@ -26,6 +26,8 @@ const Index: React.FC = () => {
   const [chat, setChat] = useState<IMsg[]>([]);
   const [msg, setMsg] = useState<string>("");
 
+
+
   useEffect((): any => {
     // connect to socket server
     const socket = SocketIOClient.connect(process.env.BASE_URL, {
@@ -55,7 +57,6 @@ const Index: React.FC = () => {
         user,
         msg,
       };
-
       // dispatch message to other users
       const resp = await fetch("/api/chat/chat", {
         method: "POST",
@@ -68,10 +69,13 @@ const Index: React.FC = () => {
       // reset field if OK
       if (resp.ok) setMsg("");
     }
-
     // focus after click
     inputRef?.current?.focus();
   };
+
+
+  const gola =() =>{ alert()};
+
 
   return (
     <>
@@ -86,30 +90,23 @@ const Index: React.FC = () => {
         <div className='ui large message' style={{color:'blue',textAlign:'center'}}>
           {chat.length ? (
             chat.map((chat, i) => (
-              <div key={"msg_" + i} 
-              // tw="mt-1"
-              >
-                <span
-                  // css={chat.user === user ? tw`text-red-500` : tw`text-black`}
-                >
+              <div key={"msg_" + i} >
+                <span>
                   {chat.user === user ? "Me" : chat.user}
                 </span>
                 : {chat.msg}
               </div>
             ))
           ) : (
-            <div style={{color:'blue',textAlign:'center'}}
-            // tw="text-sm text-center text-gray-400 py-6"
-            >
+            <div style={{color:'blue',textAlign:'center'}}>
               No chat messages
             </div>
           )}
         </div>
-        <div style={{textAlign:'center'}}
-        
-        >
+
+
+        <div style={{textAlign:'center'}}>
           <div 
-          
           >
             <div className="ui big icon input " style={{}}>
               <input
@@ -128,6 +125,33 @@ const Index: React.FC = () => {
                   }
                 }}
               />
+
+
+
+                <input
+                ref={inputRef}
+                type="text"
+                value={msg}
+                placeholder={connected ? "Type a message..." : "Connecting..."}
+                
+                disabled={!connected}
+                onChange={(e) => {
+                  setMsg(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+              />
+
+
+
+
+
+
+
+
             </div>
             {/* <div style={{margin:'auto'}}> */}
               <Button className="big green" style={{margin:'10px'}}  
@@ -135,6 +159,12 @@ const Index: React.FC = () => {
                 disabled={!connected}
               >
                 SEND
+              </Button>
+
+              <Button className="big green" style={{margin:'10px'}}  
+                onClick={gola}
+              >
+                Alert
               </Button>
             {/* </div> */}
           </div>

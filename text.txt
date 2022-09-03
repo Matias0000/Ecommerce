@@ -1,0 +1,25 @@
+
+Ruta		Método		Info	
+/		GET		Home, redirige a /productos si se está logueado	
+/login		GET		Pantalla de inicio para autenticarse	
+/login		POST		Recibe un body con {email: string, password: string} y autentica al usuario	
+/register		GET		Muestra el formulario de registro	
+/register		POST		Recibe un body con {email, nombre, apellido, direccion, password: string, telefono: number} y registra al usuario	
+/productos		GET		Muestra una vista con los productos en la base de datos y links hacia el resto de las vistas/funcionalidades	
+/productos/:categoria | id		GET		Muestra los productos cuya categoría o ID coincidan con la especificada	
+/api/productos		GET		Muestra una vista con los productos en la base de datos en formato JSON	
+/api/productos/:categoria | id		GET		Muestra los productos cuya categoría o ID coincidan con la especificada en formato JSON	
+/api/productos		POST		Recibe un body con {producto: {nombre, descripcion, categoria, thumbnail: string, precio: number}} y agrega el producto	
+/api/productos/:id		PUT		Recibe un body con {producto: {nombre, descripcion, categoria, thumbnail: string, precio: number}} y actualiza el producto cuya id coincida con la de los params	
+/api/productos/:id		DELETE		Recibe una id por los params y borra el producto que coincida con ella	
+/carritos		GET		Muestra el carrito del usuario activo	
+/api/carritos		GET		Muestra el carrito del usuario activo en formato JSON	
+/api/carritos		POST		Recibe {email: string, idProd: number} a través del body y agrega el producto al carrito del usuario activo	
+/api/carritos/:id		DELETE		Recibe id por params y elimina el producto del carrito del usuario activo	
+/ordenes		GET		Muestra las órdenes generadas por el usuario activo	
+/api/ordenes		GET		Muestra las órdenes generadas por el usuario activo en formato JSON	
+/api/ordenes		POST		Recibe {email: string} a través del body y agrega el contenido del carrito activo a una órden, vaciando el carrito en el proceso	
+/api/ordenes		PUT		Recibe {estado: string, id: number} a través del body y modifica el estado de la orden cuyo ID coincida con el especificado	
+/chat		GET		Canal de chat en tiempo real	
+/chat/:email		GET		Muestra solamente los mensajes guardados cuyo mail coincida con el especificado	
+/config		GET		Muestra la configuración de entorno del servidor
