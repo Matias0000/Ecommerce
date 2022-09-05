@@ -33,14 +33,9 @@ const getCarrito = async(req,res)=>{
 const createCarrito = async(req,res) =>{
     const {body}=req
     try {
-
         const producto = req.body
         const cart = await new Carrito(producto);
-        // const newProduct = new Cart(req.body)
-        // // console.log("HOla", newProduct);
         cart.save()
-        // const saveProduct = await newProduct.save()
-        // console.log("HOla", req.body , saveProduct);
         return res.status(200).json("agregado")
         // return cart?.id;
     } catch (error) {

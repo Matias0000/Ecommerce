@@ -55,20 +55,33 @@ export default function Index({ carrito = [] }) {
           {
               carrito.map((products) =>(
                 <Card key={products._id}>
-                  <Card.Content>
-                    <Card.Header>{products.name}</Card.Header>
-                    <p>Precio ${products.precio}</p>
+                  <Card.Content style={{margin:'auto'}}>
+                    <Card.Header>{products.title}</Card.Header>
+                    <p>Precio ${products.price}</p>
+                    <p>Stock:{products.stock}</p>
+                    <p>Descripcion{products.description}</p>
                     <img src={products.thumbnail} style={{width:'150px',margin:'auto'}}></img>
                   </Card.Content>
+                  
                   <Card.Content extra>
-                    <Button className="positive ui button" style={{padding:'10px'}} onClick={() => router.push(`/carrito/`)}>
-                      Comprar</Button>
+                  <Button className="fluid red ui button"   onClick={() => router.push(`/carrito/${products._id}`)}>Delete</Button>
                   </Card.Content>
+                  
                 </Card>
               ))
           }
+          
+          
           </Card.Group>
           </div>
+
+          <div style={{padding:'50px',margin:'auto',textAlign:'center',fontSize:'50px'}}>
+                Total: {carrito.reduce((a,c) => a+c.price, 0)} 
+          </div>
+          <Card.Content extra>
+            <Button className="positive ui button" style={{padding:'10px'}} >
+                Enviar Compra</Button>
+          </Card.Content>
           <div >
         </div>
       {/* </Container>  */}

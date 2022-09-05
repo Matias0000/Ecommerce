@@ -3,43 +3,30 @@ import { useRouter } from "next/router";
 import { Confirm, Button, Loader, Grid } from "semantic-ui-react";
 import Error from "next/error";
 
-const Products = ({ carrito1, error }) => {
-  
+const Products = ({ product, error }) => {
+  const [confirm, setConfirm] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { query, push } = useRouter();
 
-
-  const router = useRouter()
-
-  const {slug} = query
-  
-  
-  const [newProduct, setNewProduct] = useState([{
-    title: "",
-    price:"",
-    thumbnail: "",
-  }]);
-
-  const [newCarrito,setCarrito]= useState([])
-
-  
-  const createCarrito = async () => {
+  const deleteTask = async () => {
+    const { id } = query;
     try {
-      await fetch("http://localhost:3000/api/carrito", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProduct),
+      await fetch(`http://localhost:3000/api/carrito/${id}`, {
+        method: "DELETE",
       });
     } catch (error) {
       console.error(error);
     }
   };
+  
+  const open = () => setConfirm(true);
+  const close = () => setConfirm(false);
 
-  const agregarAlCarrito = async () => {
-    await createCarrito();
-    push("/");
-
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    await deleteTask();
+    push("/carrito");
+    close();
   };
 
   if (error && error.statusCode)
@@ -54,42 +41,38 @@ const Products = ({ carrito1, error }) => {
     >
       <Grid.Row>
         <Grid.Column textAlign="center">
-          <h1>{carrito1.title}</h1>
-          <h2>Precio${carrito1.price}</h2>
-          <img src={carrito1.thumbnail}></img>
+          <h1>{product.title}</h1>
+          <h2>Precio${product.price}</h2>
+          <img src={product.thumbnail}></img>
           <div>
-          <Button color="green" onClick={agregarAlCarrito} >
-              Agregar al carrito
-            </Button>
-
-            {/* <Button color="red" onClick={open} loading={isDeleting}>
+            <Button color="red" onClick={open} loading={isDeleting}>
               Delete
-            </Button> */}
+            </Button>
           </div>
         </Grid.Column>
       </Grid.Row>
 
       {/* Confirm modal */}
-      {/* <Confirm
-        content={`Are you sure to delete the Product ${carrito1._id}`}
+      <Confirm
+        content={`Are you sure to delete the Product ${product._id}`}
         header="Please confirm"
         open={confirm}
-        onConfirm={agregarAlCarrito}
+        onConfirm={handleDelete}
         onCancel={close}
-      /> */}
+      />
     </Grid>
   );
 };
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/carrito/${id}`);
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
 
   if (res.status === 200) {
-    const carrito1 = await res.json();
+    const product = await res.json();
 
     return {
       props: {
-        carrito1,
+        product,
       },
     };
   }

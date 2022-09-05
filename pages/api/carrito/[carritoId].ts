@@ -2,6 +2,7 @@
 import * as express from 'express' 
 import { Request, Response, NextFunction } from 'express';
 import Cart from '../../../models/Cart'
+import Carrito from '../../../models/carrito'
 import Product from '../../../models/Products'
 import {connectDb} from '../../../config/db'
 import { isValidObjectId } from 'mongoose';
@@ -14,7 +15,7 @@ export default async function (req:any,res:any){
     switch(method){
         case "GET":
             try {
-                const cart = await Cart.findById(carritoId);
+                const cart = await Carrito.findById(carritoId);
                 // const productos = cart.products.findOne()
                 
                     if (!cart) return res.status(404).json({ msg: "Product does not exists" });
@@ -22,37 +23,19 @@ export default async function (req:any,res:any){
               } catch (error) {
                 return res.status(400).json({ msg: error.message });
               }
-        case "POST":
-          try {
-            // const cart = await Cart.findByIdAndUpdate(carritoId, body, {
-            //   new: true,
-            //   runValidators: true,
-            // });
-            
-            const cart = await Cart.insertOne({
-              new: true,
-              runValidators: true,
-            });
-
-            if (!cart) return res.status(404).json({ msg: "Product does not exists" });
-            return res.status(200).json(cart);
-          } catch (error) {
-            return res.status(400).json({ msg: error.message });
-          }
-        
         case "DELETE":
             try {
-                const cart = await Cart.findByIdAndDelete(carritoId);
+                const cart = await Carrito.findByIdAndDelete(carritoId);
                 console.log(cart);
                 
-                    if (!cart) return res.status(404).json({ msg: "Cart does not exists" });
+                    if (!cart) return res.status(404).json({ msg: "Carrito does not exists" });
                 return res.status(200).json(cart);
               } catch (error) {
                 return res.status(400).json({ msg: error.message });
               }
         case "PUT":
             try {
-                const cart = await Cart.findByIdAndUpdate(carritoId, body, {
+                const cart = await Carrito.findByIdAndUpdate(carritoId, body, {
                   new: true,
                   runValidators: true,
                 });

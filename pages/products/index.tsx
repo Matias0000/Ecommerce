@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import TaskCard from "../../component/TaskCard";
+import React, { useState, useEffect } from "react";
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -34,6 +35,30 @@ export default function Index({ product = [] }) {
       </Grid>
     );
 
+    
+    const handleSubmit =()=>{
+
+    }
+    const { query, push } = useRouter();
+    const agregarAlCarrito = async (product) => {
+      console.log(product);
+      
+      const { id } = query;
+      try {
+        await fetch(`http://localhost:3000/api/carrito/`, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(product)
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+
   // Render a list of products
   return (
     
@@ -51,10 +76,10 @@ export default function Index({ product = [] }) {
                     <p>Stock:{products.stock}</p>
 
                     <img src={products.thumbnail} style={{width:'150px',margin:'auto'}}></img>
-                    <p>Description{products.description}</p>
+                    <p>Descripción:{products.description}</p>
                   </Card.Content>
                   <Card.Content extra>
-                    <Button className="positive ui button" style={{padding:'10px'}} onClick={() => router.push(`/carrito/`)} >Comprar</Button>
+                    <Button className="positive ui button" style={{padding:'10px'}} onClick={()=>{agregarAlCarrito(products)}} >Comprar</Button>
                     <Button primary onClick={() => router.push(`/products/${products._id}`)}>View</Button>
                     <Button secondary onClick={() => router.push(`/products/${products._id}/edit`)}> Editar</Button>
                   </Card.Content>
@@ -86,3 +111,4 @@ export async function getServerSideProps() {
     },
   };
 }
+

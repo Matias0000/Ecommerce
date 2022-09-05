@@ -17,5 +17,7 @@ const MessageSchema = new mongoose.Schema({
    date: Date,
 })
 
-// export const MessageModel = mongoose.model('Message', Message);
-module.exports = mongoose.models.Message || mongoose.model('Message',MessageSchema)
+// module.exports = mongoose.model("Messages", MessageSchema);
+
+// export const MessageModel = mongoose.model('Message', MessageSchema);
+module.exports = mongoose.models.Messages || mongoose.model('Messages',MessageSchema)
